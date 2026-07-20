@@ -1,0 +1,28 @@
+{% extends "layouts/base.html" %}
+{% block title %}Contact — NeuroLearn{% endblock %}
+{% block content %}
+<section class="hero" style="padding:60px 0 30px;">
+  <div class="container">
+    <span class="eyebrow">Contact</span>
+    <h1 style="font-size:42px;">Talk to the team.</h1>
+  </div>
+</section>
+<section class="section">
+  <div class="container grid-2">
+    <form method="POST" action="{{ url_for('public.contact') }}" class="card">
+      <div class="field"><label>Full name</label><input type="text" name="name" required></div>
+      <div class="field"><label>Email</label><input type="email" name="email" required></div>
+      <div class="field"><label>Message</label>
+        <textarea name="message" rows="5" required style="width:100%; padding:12px 14px; background:var(--bg-panel); border:1px solid var(--border-strong); border-radius:6px; color:var(--text-primary); font-size:14.5px;"></textarea>
+      </div>
+      <button class="btn btn-primary btn-block" type="submit">Send message</button>
+    </form>
+    <div>
+      <h2>Other ways to reach us</h2>
+      <p class="mb-24">For institutional pilots or partnership inquiries, email us directly and we'll respond within two business days.</p>
+      <div class="card mb-16"><h3>General</h3><p>hello@neurolearn.ai</p></div>
+      <div class="card"><h3>Institutions</h3><p>partnerships@neurolearn.ai</p></div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "layouts/app_base.html" %}
+{% block title %}Tests — NeuroLearn{% endblock %}
+{% block sidenav %}
+<a href="{{ url_for('student.dashboard') }}"><span class="ico">▦</span>Dashboard</a>
+<a href="{{ url_for('student.courses') }}"><span class="ico">◧</span>Courses</a>
+<a href="{{ url_for('student.assignments') }}"><span class="ico">✎</span>Assignments</a>
+<a href="{{ url_for('student.tests') }}" class="active"><span class="ico">◎</span>Tests</a>
+<a href="{{ url_for('student.progress') }}"><span class="ico">↗</span>Progress</a>
+<a href="{{ url_for('student.ai_assistant') }}"><span class="ico">✦</span>AI Assistant</a>
+<a href="{{ url_for('student.meditation') }}">
+    <span class="ico">🧘</span> Meditation
+</a>
+<a href="{{ url_for('student.settings') }}"><span class="ico">⚙</span>Settings</a>
+{% endblock %}
+{% block content %}
+<div class="app-topbar"><div><h1>Tests</h1><div class="sub">Adaptive difficulty — questions recalibrate to your cognitive-readiness score.</div></div></div>
+<div class="grid-3">
+  {% for t in tests %}
+  <div class="card">
+    <span class="signal-tag {{ t.tag_class }}">{{ t.difficulty }}</span>
+    <h3 class="mt-16">{{ t.title }}</h3>
+    <p>{{ t.description }}</p>
+    <div class="flex justify-between items-center mt-24">
+      <span class="muted" style="font-size:13px;">{{ t.questions }} questions · {{ t.duration }}</span>
+      <a href="#" class="btn btn-primary btn-sm">Start</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

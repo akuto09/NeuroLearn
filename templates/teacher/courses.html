@@ -1,0 +1,19 @@
+{% extends "layouts/app_base.html" %}
+{% block title %}My Courses — NeuroLearn{% endblock %}
+{% block sidenav %}
+<a href="{{ url_for('teacher.dashboard') }}"><span class="ico">▦</span>Dashboard</a>
+<a href="{{ url_for('teacher.students') }}"><span class="ico">☺</span>Students</a>
+<a href="{{ url_for('teacher.courses') }}" class="active"><span class="ico">◧</span>My Courses</a>
+{% endblock %}
+{% block content %}
+<div class="app-topbar"><div><h1>My courses</h1><div class="sub">Courses and students assigned to you. Contact an admin for changes.</div></div></div>
+<div class="grid-3">
+  {% for c in courses %}
+  <div class="card">
+    <span class="signal-tag on-meditation">{{ c.students }} students</span>
+    <h3 class="mt-16">{{ c.title }}</h3>
+    <p>{{ c.description }}</p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

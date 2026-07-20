@@ -1,0 +1,26 @@
+{% extends "layouts/base.html" %}
+{% block title %}Courses — NeuroLearn{% endblock %}
+{% block content %}
+<section class="hero" style="padding:60px 0 30px;">
+  <div class="container">
+    <span class="eyebrow">Catalog</span>
+    <h1 style="font-size:42px;">Courses that pace themselves to you.</h1>
+    <p class="lead">Every course below runs through the same adaptive engine — difficulty and pacing adjust to your live cognitive state.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container grid-3">
+    {% for c in courses %}
+    <div class="card">
+      <span class="signal-tag on-attention">{{ c.category }}</span>
+      <h3 class="mt-16">{{ c.title }}</h3>
+      <p>{{ c.description }}</p>
+      <div class="flex justify-between items-center mt-24">
+        <span class="muted" style="font-size:13px;">{{ c.modules }} modules · {{ c.level }}</span>
+        <a href="{{ url_for('auth.register') }}" class="btn btn-ghost btn-sm">Enroll</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

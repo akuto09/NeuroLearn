@@ -1,0 +1,23 @@
+{% extends "layouts/app_base.html" %}
+{% block title %}AI Settings — NeuroLearn Admin{% endblock %}
+{% block sidenav %}
+<a href="{{ url_for('admin.dashboard') }}"><span class="ico">▦</span>Dashboard</a>
+<a href="{{ url_for('admin.users') }}"><span class="ico">☺</span>Users</a>
+<a href="{{ url_for('admin.courses') }}"><span class="ico">◧</span>Courses</a>
+<a href="{{ url_for('admin.reports') }}"><span class="ico">▤</span>Reports</a>
+<a href="{{ url_for('admin.ai_settings') }}" class="active"><span class="ico">✦</span>AI Settings</a>
+{% endblock %}
+{% block content %}
+<div class="app-topbar"><div><h1>AI engine settings</h1><div class="sub">Tune thresholds used by the adaptive learning engine.</div></div></div>
+<div class="panel" style="max-width:560px;">
+  <form method="POST">
+    <div class="field"><label>Fatigue alert threshold (%)</label><input type="number" name="fatigue_threshold" value="65"></div>
+    <div class="field"><label>Cognitive load alert threshold (%)</label><input type="number" name="load_threshold" value="75"></div>
+    <div class="field"><label>Attention floor before difficulty drops (%)</label><input type="number" name="attention_floor" value="35"></div>
+    <div class="field"><label>EEG data source</label>
+      <select name="eeg_source"><option>Simulated (demo)</option><option>Live device stream</option></select>
+    </div>
+    <button class="btn btn-primary">Save AI configuration</button>
+  </form>
+</div>
+{% endblock %}

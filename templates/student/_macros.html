@@ -1,0 +1,5 @@
+{% macro item(endpoint, icon, label, active_endpoint) %}
+<a href="{{ url_for(endpoint) }}" class="{{ 'active' if active_endpoint == endpoint else '' }}">
+  <span class="ico">{{ icon }}</span>{{ label }}
+</a>
+{% endmacro %}

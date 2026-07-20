@@ -1,0 +1,52 @@
+{% extends "layouts/base.html" %}
+{% block title %}Pricing — NeuroLearn{% endblock %}
+{% block content %}
+<section class="hero" style="padding:60px 0 30px;">
+  <div class="container text-center">
+    <span class="eyebrow">Pricing</span>
+    <h1 style="font-size:42px;">Straightforward plans, real adaptivity at every tier.</h1>
+  </div>
+</section>
+<section class="section">
+  <div class="container grid-3">
+    <div class="card price-card">
+      <span class="eyebrow">Starter</span>
+      <div class="price">$0<span>/month</span></div>
+      <p>For learners trying adaptive study for the first time.</p>
+      <ul>
+        <li>Behavioral personalization</li>
+        <li>3 active courses</li>
+        <li>Weekly progress report</li>
+        <li>Community support</li>
+      </ul>
+      <a href="{{ url_for('auth.register') }}" class="btn btn-ghost btn-block">Start free</a>
+    </div>
+    <div class="card price-card featured">
+      <span class="badge">Most popular</span>
+      <span class="eyebrow">Cognitive Pro</span>
+      <div class="price">$19<span>/month</span></div>
+      <p>Full EEG-based mental state detection and adaptive engine.</p>
+      <ul>
+        <li>Everything in Starter</li>
+        <li>Live EEG attention & fatigue tracking</li>
+        <li>Unlimited courses</li>
+        <li>AI study assistant</li>
+        <li>Long-term cognitive profile</li>
+      </ul>
+      <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-block">Start Cognitive Pro</a>
+    </div>
+    <div class="card price-card">
+      <span class="eyebrow">Institution</span>
+      <div class="price">Custom</div>
+      <p>For schools and academies deploying NeuroLearn at scale.</p>
+      <ul>
+        <li>Everything in Cognitive Pro</li>
+        <li>Teacher & admin dashboards</li>
+        <li>Cohort-level analytics</li>
+        <li>Dedicated onboarding</li>
+      </ul>
+      <a href="{{ url_for('public.contact') }}" class="btn btn-ghost btn-block">Talk to us</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

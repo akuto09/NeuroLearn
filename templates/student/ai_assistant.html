@@ -1,0 +1,24 @@
+{% extends "layouts/app_base.html" %}
+{% block title %}AI Assistant — NeuroLearn{% endblock %}
+{% block sidenav %}
+<a href="{{ url_for('student.dashboard') }}"><span class="ico">▦</span>Dashboard</a>
+<a href="{{ url_for('student.courses') }}"><span class="ico">◧</span>Courses</a>
+<a href="{{ url_for('student.assignments') }}"><span class="ico">✎</span>Assignments</a>
+<a href="{{ url_for('student.tests') }}"><span class="ico">◎</span>Tests</a>
+<a href="{{ url_for('student.progress') }}"><span class="ico">↗</span>Progress</a>
+<a href="{{ url_for('student.ai_assistant') }}" class="active"><span class="ico">✦</span>AI Assistant</a>
+<a href="{{ url_for('student.settings') }}"><span class="ico">⚙</span>Settings</a>
+{% endblock %}
+{% block content %}
+<div class="app-topbar"><div><h1>AI Study Assistant</h1><div class="sub">Recommendations based on your live cognitive state.</div></div></div>
+<div class="panel ai-chat">
+  <div class="messages" id="chatMessages">
+    <div class="msg bot">Hi {{ session.get('name') }} — I can see your attention and fatigue levels right now. Ask me what to study next, or how long you should keep going.</div>
+  </div>
+  <div class="ai-chat-input">
+    <input type="text" id="chatInput" placeholder="Ask about pacing, difficulty, or what to review next…">
+    <button class="btn btn-primary" id="chatSend">Send</button>
+  </div>
+</div>
+<script src="{{ url_for('static', filename='js/ai/assistant.js') }}"></script>
+{% endblock %}

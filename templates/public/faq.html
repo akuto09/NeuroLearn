@@ -1,0 +1,30 @@
+{% extends "layouts/base.html" %}
+{% block title %}FAQ — NeuroLearn{% endblock %}
+{% block content %}
+<section class="hero" style="padding:60px 0 30px;">
+  <div class="container">
+    <span class="eyebrow">FAQ</span>
+    <h1 style="font-size:42px;">Common questions.</h1>
+  </div>
+</section>
+<section class="section">
+  <div class="container" style="max-width:760px;">
+    <div class="card mb-16">
+      <h3>Do I need real EEG hardware?</h3>
+      <p class="mt-8">NeuroLearn is designed around consumer-grade, non-invasive EEG headsets. A simulated demo mode is also available so you can explore the platform without hardware.</p>
+    </div>
+    <div class="card mb-16">
+      <h3>Is my cognitive data private?</h3>
+      <p class="mt-8">Yes. EEG and behavioral data are tied to your account only, used to build your personal learning profile, and never sold to third parties.</p>
+    </div>
+    <div class="card mb-16">
+      <h3>Can teachers see individual EEG data?</h3>
+      <p class="mt-8">Teachers see aggregated, cohort-level readiness trends by default. Individual raw signal access requires explicit learner consent.</p>
+    </div>
+    <div class="card">
+      <h3>What happens if fatigue gets too high?</h3>
+      <p class="mt-8">The adaptive engine shortens sessions, lightens difficulty, and suggests a break — proactively, before comprehension drops.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

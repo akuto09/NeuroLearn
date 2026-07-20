@@ -1,0 +1,28 @@
+{% extends "layouts/app_base.html" %}
+{% block title %}Courses — NeuroLearn{% endblock %}
+{% block sidenav %}
+<a href="{{ url_for('student.dashboard') }}"><span class="ico">▦</span>Dashboard</a>
+<a href="{{ url_for('student.courses') }}" class="active"><span class="ico">◧</span>Courses</a>
+<a href="{{ url_for('student.assignments') }}"><span class="ico">✎</span>Assignments</a>
+<a href="{{ url_for('student.tests') }}"><span class="ico">◎</span>Tests</a>
+<a href="{{ url_for('student.progress') }}"><span class="ico">↗</span>Progress</a>
+<a href="{{ url_for('student.ai_assistant') }}"><span class="ico">✦</span>AI Assistant</a>
+<a href="{{ url_for('student.settings') }}"><span class="ico">⚙</span>Settings</a>
+{% endblock %}
+{% block content %}
+<div class="app-topbar"><div><h1>My courses</h1><div class="sub">Difficulty and pacing adapt automatically as you go.</div></div></div>
+<div class="grid-3">
+  {% for c in courses %}
+  <div class="card">
+    <span class="signal-tag on-attention">{{ c.category }}</span>
+    <h3 class="mt-16">{{ c.title }}</h3>
+    <p>{{ c.description }}</p>
+    <div class="progress-track mt-16"><div class="progress-fill" style="width:{{ c.progress }}%;"></div></div>
+    <div class="flex justify-between items-center mt-16">
+      <span class="muted" style="font-size:13px;">{{ c.progress }}% complete</span>
+      <a href="#" class="btn btn-ghost btn-sm">Continue</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

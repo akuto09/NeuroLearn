@@ -1,0 +1,38 @@
+{% extends "layouts/app_base.html" %}
+{% block title %}Admin Dashboard — NeuroLearn{% endblock %}
+{% block sidenav %}
+<a href="{{ url_for('admin.dashboard') }}" class="active"><span class="ico">▦</span>Dashboard</a>
+<a href="{{ url_for('admin.users') }}"><span class="ico">☺</span>Users</a>
+<a href="{{ url_for('admin.courses') }}"><span class="ico">◧</span>Courses</a>
+<a href="{{ url_for('admin.reports') }}"><span class="ico">▤</span>Reports</a>
+<a href="{{ url_for('admin.ai_settings') }}"><span class="ico">✦</span>AI Settings</a>
+{% endblock %}
+{% block content %}
+<div class="app-topbar"><div><h1>Platform overview</h1><div class="sub">System-wide metrics across all roles and courses.</div></div></div>
+<div class="stat-grid">
+  <div class="stat-card"><div class="value">{{ stats.total_users }}</div><div class="label">Total users</div></div>
+  <div class="stat-card"><div class="value">{{ stats.total_students }}</div><div class="label">Students</div></div>
+  <div class="stat-card"><div class="value">{{ stats.total_teachers }}</div><div class="label">Teachers</div></div>
+  <div class="stat-card"><div class="value">{{ stats.total_courses }}</div><div class="label">Active courses</div></div>
+</div>
+<div class="grid-2">
+  <div class="panel">
+    <div class="panel-title"><h3>Recent signups</h3><a href="{{ url_for('admin.users') }}" class="link">Manage users</a></div>
+    <table>
+      <thead><tr><th>Name</th><th>Role</th><th>Joined</th></tr></thead>
+      <tbody>
+        {% for u in recent_users %}
+        <tr><td style="color:var(--text-primary);">{{ u.name }}</td><td><span class="badge-role badge-{{ u.role }}">{{ u.role }}</span></td><td>{{ u.joined }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="panel">
+    <div class="panel-title"><h3>System health</h3></div>
+    <div class="mb-16 flex justify-between"><span class="muted">AI engine</span><span class="pill pill-green">Operational</span></div>
+    <div class="mb-16 flex justify-between"><span class="muted">EEG ingestion service</span><span class="pill pill-green">Operational</span></div>
+    <div class="mb-16 flex justify-between"><span class="muted">Notification service</span><span class="pill pill-green">Operational</span></div>
+    <div class="flex justify-between"><span class="muted">Database</span><span class="pill pill-blue">SQLite (dev)</span></div>
+  </div>
+</div>
+{% endblock %}

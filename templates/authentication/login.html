@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log in — NeuroLearn</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="auth-wrap">
+  <div class="auth-side">
+    <a href="{{ url_for('public.home') }}" class="brand" style="margin-bottom:30px;">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" stroke="#45d4ff" stroke-width="1.4"/><path d="M6 16c2-5 4 5 6 0s4-5 6 0 4 5 6 0" stroke="#45d4ff" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+      NeuroLearn
+    </a>
+    <h2>Your mind already knows<br>when you're ready to learn.</h2>
+    <p class="mt-16" style="max-width:380px;">Log back in to pick up your cognitive learning profile exactly where you left off.</p>
+    <svg id="eegPathLogin" viewBox="0 0 460 90" class="wave-divider" style="height:80px; margin-top:40px;"><path id="eegPath2" d=""></path></svg>
+  </div>
+  <div class="auth-form-col">
+    <div class="auth-box">
+      <div class="brand"><svg class="brand-mark" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" stroke="#45d4ff" stroke-width="1.4"/><path d="M6 16c2-5 4 5 6 0s4-5 6 0 4 5 6 0" stroke="#45d4ff" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>NeuroLearn</div>
+      <h2>Welcome back</h2>
+      <p class="mt-8 mb-24">Log in to continue your session.</p>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}{% for category, message in messages %}<div class="alert alert-{{ category }}">{{ message }}</div>{% endfor %}{% endif %}
+      {% endwith %}
+
+      <form method="POST" action="{{ url_for('auth.login') }}">
+        <div class="role-toggle">
+          <label><input type="radio" name="role" value="student" checked><span>Student</span></label>
+          <label><input type="radio" name="role" value="teacher"><span>Teacher</span></label>
+          <label><input type="radio" name="role" value="admin"><span>Admin</span></label>
+        </div>
+        <div class="field"><label>Email</label><input type="email" name="email" required placeholder="you@example.com"></div>
+        <div class="field"><label>Password</label><input type="password" name="password" required placeholder="••••••••"></div>
+        <div class="flex justify-between items-center mb-16" style="font-size:13px;">
+          <a href="{{ url_for('auth.forgot_password') }}" style="color:var(--accent-synapse);">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Log in</button>
+      </form>
+      <p class="auth-alt">Don't have an account? <a href="{{ url_for('auth.register') }}">Create one</a></p>
+      <p class="auth-alt" style="margin-top:6px; font-size:12.5px; color:var(--text-faint);">Demo: admin@neurolearn.ai / admin123</p>
+    </div>
+  </div>
+</div>
+<script src="{{ url_for('static', filename='js/eeg-wave.js') }}"></script>
+<script>initEegWave('eegPath2', 460, 90);</script>
+</body>
+</html>

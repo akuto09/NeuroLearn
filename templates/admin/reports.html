@@ -1,0 +1,22 @@
+{% extends "layouts/app_base.html" %}
+{% block title %}Reports — NeuroLearn Admin{% endblock %}
+{% block sidenav %}
+<a href="{{ url_for('admin.dashboard') }}"><span class="ico">▦</span>Dashboard</a>
+<a href="{{ url_for('admin.users') }}"><span class="ico">☺</span>Users</a>
+<a href="{{ url_for('admin.courses') }}"><span class="ico">◧</span>Courses</a>
+<a href="{{ url_for('admin.reports') }}" class="active"><span class="ico">▤</span>Reports</a>
+<a href="{{ url_for('admin.ai_settings') }}"><span class="ico">✦</span>AI Settings</a>
+{% endblock %}
+{% block content %}
+<div class="app-topbar"><div><h1>Platform reports</h1><div class="sub">Cognitive and academic trends across the whole platform.</div></div></div>
+<div class="stat-grid">
+  <div class="stat-card"><div class="value">71%</div><div class="label">Avg. platform attention</div></div>
+  <div class="stat-card"><div class="value">34%</div><div class="label">Avg. cognitive load</div></div>
+  <div class="stat-card"><div class="value">19%</div><div class="label">Avg. fatigue</div></div>
+  <div class="stat-card"><div class="value">+12%</div><div class="label">Retention vs last month</div></div>
+</div>
+<div class="panel">
+  <div class="panel-title"><h3>Notes</h3></div>
+  <p>Connect this panel to your analytics warehouse or export pipeline to replace the demo figures above with live aggregates.</p>
+</div>
+{% endblock %}

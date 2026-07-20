@@ -1,0 +1,33 @@
+{% extends "layouts/app_base.html" %}
+{% block title %}Teacher Dashboard — NeuroLearn{% endblock %}
+{% block sidenav %}
+<a href="{{ url_for('teacher.dashboard') }}" class="active"><span class="ico">▦</span>Dashboard</a>
+<a href="{{ url_for('teacher.students') }}"><span class="ico">☺</span>Students</a>
+<a href="{{ url_for('teacher.courses') }}"><span class="ico">◧</span>My Courses</a>
+{% endblock %}
+{% block content %}
+<div class="app-topbar"><div><h1>Cohort overview</h1><div class="sub">Aggregated cognitive-readiness trends across your assigned courses.</div></div></div>
+<div class="stat-grid">
+  <div class="stat-card"><div class="value">{{ stats.students }}</div><div class="label">Active students</div></div>
+  <div class="stat-card"><div class="value">{{ stats.avg_attention }}%</div><div class="label">Avg. attention</div></div>
+  <div class="stat-card"><div class="value">{{ stats.avg_fatigue }}%</div><div class="label">Avg. fatigue</div></div>
+  <div class="stat-card"><div class="value">{{ stats.courses }}</div><div class="label">Courses assigned</div></div>
+</div>
+<div class="panel">
+  <div class="panel-title"><h3>Students needing attention</h3><a href="{{ url_for('teacher.students') }}" class="link">View all</a></div>
+  <table>
+    <thead><tr><th>Student</th><th>Course</th><th>Attention</th><th>Fatigue</th><th>Flag</th></tr></thead>
+    <tbody>
+      {% for s in flagged %}
+      <tr>
+        <td style="color:var(--text-primary);">{{ s.name }}</td>
+        <td>{{ s.course }}</td>
+        <td>{{ s.attention }}%</td>
+        <td>{{ s.fatigue }}%</td>
+        <td><span class="pill {{ s.pill }}">{{ s.flag }}</span></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

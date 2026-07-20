@@ -1,0 +1,30 @@
+{% extends "layouts/app_base.html" %}
+{% block title %}Assignments — NeuroLearn{% endblock %}
+{% block sidenav %}
+<a href="{{ url_for('student.dashboard') }}"><span class="ico">▦</span>Dashboard</a>
+<a href="{{ url_for('student.courses') }}"><span class="ico">◧</span>Courses</a>
+<a href="{{ url_for('student.assignments') }}" class="active"><span class="ico">✎</span>Assignments</a>
+<a href="{{ url_for('student.tests') }}"><span class="ico">◎</span>Tests</a>
+<a href="{{ url_for('student.progress') }}"><span class="ico">↗</span>Progress</a>
+<a href="{{ url_for('student.ai_assistant') }}"><span class="ico">✦</span>AI Assistant</a>
+<a href="{{ url_for('student.settings') }}"><span class="ico">⚙</span>Settings</a>
+{% endblock %}
+{% block content %}
+<div class="app-topbar"><div><h1>Assignments</h1><div class="sub">Ordered by due date. Recommended order adjusts to your fatigue level.</div></div></div>
+<div class="panel">
+  <table>
+    <thead><tr><th>Assignment</th><th>Course</th><th>Due</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+      {% for a in assignments %}
+      <tr>
+        <td style="color:var(--text-primary);">{{ a.title }}</td>
+        <td>{{ a.course }}</td>
+        <td>{{ a.due }}</td>
+        <td><span class="pill {{ a.pill }}">{{ a.status }}</span></td>
+        <td><a href="#" class="btn btn-ghost btn-sm">Open</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

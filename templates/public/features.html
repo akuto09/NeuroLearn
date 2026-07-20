@@ -1,0 +1,53 @@
+{% extends "layouts/base.html" %}
+{% block title %}Features — NeuroLearn{% endblock %}
+{% block content %}
+<section class="hero" style="padding:60px 0 30px;">
+  <div class="container">
+    <span class="eyebrow">Platform</span>
+    <h1 style="font-size:42px;">Every part of the system, built around one loop.</h1>
+    <p class="lead">Sense cognitive state → interpret it → adapt the lesson → learn from the outcome. Repeat every session.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container grid-2">
+    <div class="card">
+      <span class="signal-tag on-attention">Sense</span>
+      <h3 class="mt-16">EEG + behavioral capture</h3>
+      <p>Non-invasive EEG streams attention, meditation, cognitive load, and fatigue. In parallel, response time, revision frequency, and session length are logged automatically as you study.</p>
+    </div>
+    <div class="card">
+      <span class="signal-tag on-load">Interpret</span>
+      <h3 class="mt-16">AI decision engine</h3>
+      <p>A rule-and-model based engine fuses physiological and behavioral signals into a single cognitive-readiness score, updated continuously through a session.</p>
+    </div>
+    <div class="card">
+      <span class="signal-tag on-meditation">Adapt</span>
+      <h3 class="mt-16">Dynamic personalization</h3>
+      <p>Pace, content difficulty, instructional strategy, revision scheduling, and study duration shift automatically — no manual settings required.</p>
+    </div>
+    <div class="card">
+      <span class="signal-tag on-fatigue">Learn</span>
+      <h3 class="mt-16">Long-term cognitive profile</h3>
+      <p>Every session refines a persistent profile of how you learn best, so week three is smarter about you than day one.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Also included</span>
+      <h2>A full learning platform underneath</h2>
+    </div>
+    <div class="grid-3">
+      <div class="card"><h3>Adaptive tests & assignments</h3><p>Difficulty recalibrates in real time based on your live cognitive-readiness score.</p></div>
+      <div class="card"><h3>Progress & retention analytics</h3><p>Visual breakdowns of mastery, fatigue trends, and revision effectiveness over time.</p></div>
+      <div class="card"><h3>AI study assistant</h3><p>A conversational assistant that recommends what to review next based on your current state.</p></div>
+      <div class="card"><h3>Teacher & admin tooling</h3><p>Role-based dashboards for course management, cohort analytics, and platform administration.</p></div>
+      <div class="card"><h3>Smart notifications</h3><p>Gentle nudges to take a break when fatigue rises, or dive deeper when focus peaks.</p></div>
+      <div class="card"><h3>Secure by design</h3><p>Encrypted authentication, role-based permissions, and full audit logging throughout.</p></div>
+    </div>
+  </div>
+</section>
+{% endblock %}

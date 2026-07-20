@@ -1,0 +1,131 @@
+{% extends "layouts/base.html" %}
+{% block title %}NeuroLearn — The Future of Cognitive Growth{% endblock %}
+{% block content %}
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">EEG-Based Neuroadaptive Learning</span>
+      <h1>Learning that adapts<br>to your <span class="hl">mind</span>, not just your scores.</h1>
+      <p class="lead">NeuroLearn reads attention, meditation, cognitive load and mental fatigue from EEG signals alongside your quiz history — then adjusts pace, difficulty and revision in real time, before performance ever drops.</p>
+      <div class="hero-actions">
+        <a href="{{ url_for('auth.register') }}" class="btn btn-primary">Start learning free</a>
+        <a href="{{ url_for('public.features') }}" class="btn btn-ghost">See how it works</a>
+      </div>
+      <div class="hero-metrics">
+        <div class="hero-metric"><div class="num">31%</div><div class="lbl">Better retention</div></div>
+        <div class="hero-metric"><div class="num">4</div><div class="lbl">Cognitive signals tracked</div></div>
+        <div class="hero-metric"><div class="num">24/7</div><div class="lbl">Adaptive AI engine</div></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="panel-head">
+        <span class="eyebrow"><span class="dot"></span>Live cognitive read</span>
+        <span class="signal-tag on-attention">EEG · streaming</span>
+      </div>
+      <svg id="eegWave" viewBox="0 0 460 90" class="wave-divider" style="height:70px;opacity:1;">
+        <path id="eegPath" d="M0,45 L460,45"></path>
+      </svg>
+      <div class="grid-2 mt-24" style="grid-template-columns:1fr 1fr; gap:14px;">
+        <div>
+          <div class="flex justify-between mb-8"><span class="muted" style="font-size:13px;">Attention</span><span id="mAttention" style="font-family:var(--font-data); color:var(--accent-synapse);">—</span></div>
+          <div class="progress-track"><div id="bAttention" class="progress-fill" style="width:0%; background:var(--accent-synapse);"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-8"><span class="muted" style="font-size:13px;">Meditation</span><span id="mMeditation" style="font-family:var(--font-data); color:var(--accent-violet);">—</span></div>
+          <div class="progress-track"><div id="bMeditation" class="progress-fill" style="width:0%; background:var(--accent-violet);"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-8"><span class="muted" style="font-size:13px;">Cognitive load</span><span id="mLoad" style="font-family:var(--font-data); color:var(--accent-amber);">—</span></div>
+          <div class="progress-track"><div id="bLoad" class="progress-fill" style="width:0%; background:var(--accent-amber);"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-8"><span class="muted" style="font-size:13px;">Fatigue</span><span id="mFatigue" style="font-family:var(--font-data); color:var(--accent-rose);">—</span></div>
+          <div class="progress-track"><div id="bFatigue" class="progress-fill" style="width:0%; background:var(--accent-rose);"></div></div>
+        </div>
+      </div>
+      <p style="font-size:12px; margin-top:16px; color:var(--text-faint);">Simulated preview stream — sign in to see your real session data.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The problem</span>
+      <h2>Most platforms react. NeuroLearn anticipates.</h2>
+      <p>Behavioral metrics like quiz scores only show up after a student is already struggling. By then, fatigue and overload have already cost them retention.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon">◐</div>
+        <h3>Fatigue goes unnoticed</h3>
+        <p>Students keep studying long after focus has dropped, quietly wasting hours with little retention.</p>
+      </div>
+      <div class="card">
+        <div class="icon">▤</div>
+        <h3>Overload hides in plain sight</h3>
+        <p>Cognitive load builds silently — grades don't move until well after comprehension has already broken down.</p>
+      </div>
+      <div class="card">
+        <div class="icon">↻</div>
+        <h3>Personalization arrives too late</h3>
+        <p>By the time a system reacts to falling scores, the learner has already lost momentum and confidence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The four signals</span>
+      <h2>What NeuroLearn actually reads</h2>
+      <p>Non-invasive EEG input is combined with behavioral data — response time, revision frequency, session length — to build a full cognitive picture.</p>
+    </div>
+    <div class="grid-4">
+      <div class="card">
+        <span class="signal-tag on-attention mb-16" style="display:inline-flex;">Signal 01</span>
+        <h3 class="mt-16">Attention</h3>
+        <p>How focused you are on material right now, moment to moment.</p>
+      </div>
+      <div class="card">
+        <span class="signal-tag on-meditation mb-16" style="display:inline-flex;">Signal 02</span>
+        <h3 class="mt-16">Meditation</h3>
+        <p>Your relaxation state — the calm baseline learning needs to stick.</p>
+      </div>
+      <div class="card">
+        <span class="signal-tag on-load mb-16" style="display:inline-flex;">Signal 03</span>
+        <h3 class="mt-16">Cognitive load</h3>
+        <p>How hard your working memory is straining against the material's difficulty.</p>
+      </div>
+      <div class="card">
+        <span class="signal-tag on-fatigue mb-16" style="display:inline-flex;">Signal 04</span>
+        <h3 class="mt-16">Mental fatigue</h3>
+        <p>Accumulated tiredness across a session, tracked so breaks happen before burnout.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container text-center">
+    <span class="eyebrow">Ready when you are</span>
+    <h2 class="mt-16">Build your cognitive learning profile</h2>
+    <p style="max-width:480px; margin:0 auto 28px;">Every session teaches NeuroLearn a little more about how you learn best — pace, timing, and difficulty tuned continuously.</p>
+    <a href="{{ url_for('auth.register') }}" class="btn btn-primary">Create your free account</a>
+  </div>
+</section>
+
+<script src="{{ url_for('static', filename='js/eeg-wave.js') }}"></script>
+<script>
+  initEegWave('eegPath', 460, 90);
+  initLiveMetrics({
+    attention: {val:'mAttention', bar:'bAttention'},
+    meditation: {val:'mMeditation', bar:'bMeditation'},
+    load: {val:'mLoad', bar:'bLoad'},
+    fatigue: {val:'mFatigue', bar:'bFatigue'}
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "layouts/app_base.html" %}
+{% block title %}Dashboard — NeuroLearn{% endblock %}
+{% block sidenav %}
+<a href="{{ url_for('student.dashboard') }}" class="active"><span class="ico">▦</span>Dashboard</a>
+<a href="{{ url_for('student.courses') }}"><span class="ico">◧</span>Courses</a>
+<a href="{{ url_for('student.assignments') }}"><span class="ico">✎</span>Assignments</a>
+<a href="{{ url_for('student.tests') }}"><span class="ico">◎</span>Tests</a>
+<a href="{{ url_for('student.progress') }}"><span class="ico">↗</span>Progress</a>
+<a href="{{ url_for('student.ai_assistant') }}"><span class="ico">✨</span>AI Assistant</a>
+<a href="{{ url_for('student.meditation') }}"><span class="ico">🧘</span>Meditation</a>
+<a href="{{ url_for('student.settings') }}"><span class="ico">⚙</span>Settings</a>
+{% endblock %}
+{% block content %}
+<div class="app-topbar">
+  <div>
+    <h1>Welcome back, {{ session.get('name') }}</h1>
+    <div class="sub">Here's your live cognitive read and today's recommended plan.</div>
+  </div>
+  <span class="signal-tag on-attention"><span class="dot" style="width:6px;height:6px;border-radius:50%;background:var(--accent-mint);display:inline-block;"></span> Session live</span>
+</div>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="top"><div class="ico" style="background:var(--accent-synapse-dim); color:var(--accent-synapse);">◆</div></div>
+    <div class="value" id="sAttention">62%</div>
+    <div class="label">Attention</div>
+    <div class="bar"><div class="bar-fill" id="barAttention" style="width:62%; background:var(--accent-synapse);"></div></div>
+  </div>
+  <div class="stat-card">
+    <div class="top"><div class="ico" style="background:var(--accent-violet-dim); color:var(--accent-violet);">◆</div></div>
+    <div class="value" id="sMeditation">48%</div>
+    <div class="label">Meditation</div>
+    <div class="bar"><div class="bar-fill" id="barMeditation" style="width:48%; background:var(--accent-violet);"></div></div>
+  </div>
+  <div class="stat-card">
+    <div class="top"><div class="ico" style="background:rgba(255,180,84,.13); color:var(--accent-amber);">◆</div></div>
+    <div class="value" id="sLoad">41%</div>
+    <div class="label">Cognitive load</div>
+    <div class="bar"><div class="bar-fill" id="barLoad" style="width:41%; background:var(--accent-amber);"></div></div>
+  </div>
+  <div class="stat-card">
+    <div class="top"><div class="ico" style="background:rgba(255,107,129,.13); color:var(--accent-rose);">◆</div></div>
+    <div class="value" id="sFatigue">22%</div>
+    <div class="label">Fatigue</div>
+    <div class="bar"><div class="bar-fill" id="barFatigue" style="width:22%; background:var(--accent-rose);"></div></div>
+  </div>
+</div>
+
+<div class="grid-2">
+  <div class="panel">
+    <div class="panel-title"><h3>Cognitive stream</h3><span class="eyebrow">EEG · live</span></div>
+    <svg id="dashWave" viewBox="0 0 560 100" class="wave-divider" style="height:80px; opacity:1;"><path id="dashWavePath"></path></svg>
+    <div id="aiRecommendation" class="alert alert-info mt-24">Reading cognitive state…</div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title"><h3>Continue learning</h3><a href="{{ url_for('student.courses') }}" class="link">View all</a></div>
+    {% for c in active_courses %}
+    <div class="mb-24">
+      <div class="flex justify-between mb-8"><span style="font-size:14px; font-weight:600;">{{ c.title }}</span><span class="muted" style="font-size:13px;">{{ c.progress }}%</span></div>
+      <div class="progress-track"><div class="progress-fill" style="width:{{ c.progress }}%;"></div></div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-title"><h3>Upcoming tests & assignments</h3><a href="{{ url_for('student.tests') }}" class="link">View all</a></div>
+  <table>
+    <thead><tr><th>Title</th><th>Course</th><th>Due</th><th>Status</th></tr></thead>
+    <tbody>
+      {% for t in upcoming %}
+      <tr>
+        <td style="color:var(--text-primary);">{{ t.title }}</td>
+        <td>{{ t.course }}</td>
+        <td>{{ t.due }}</td>
+        <td><span class="pill {{ t.pill }}">{{ t.status }}</span></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script src="{{ url_for('static', filename='js/eeg-wave.js') }}"></script>
+<script src="{{ url_for('static', filename='js/student/dashboard.js') }}"></script>
+{% endblock %}

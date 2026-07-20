@@ -1,0 +1,12 @@
+{% extends "layouts/base.html" %}
+{% block title %}Access denied — NeuroLearn{% endblock %}
+{% block content %}
+<section class="section text-center">
+  <div class="container">
+    <span class="eyebrow">403</span>
+    <h1 class="mt-16">You don't have access to this area.</h1>
+    <p class="mt-16 mb-24">Log in with an account that has the right role, or return home.</p>
+    <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Log in</a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "layouts/app_base.html" %}
+{% block title %}Users — NeuroLearn Admin{% endblock %}
+{% block sidenav %}
+<a href="{{ url_for('admin.dashboard') }}"><span class="ico">▦</span>Dashboard</a>
+<a href="{{ url_for('admin.users') }}" class="active"><span class="ico">☺</span>Users</a>
+<a href="{{ url_for('admin.courses') }}"><span class="ico">◧</span>Courses</a>
+<a href="{{ url_for('admin.reports') }}"><span class="ico">▤</span>Reports</a>
+<a href="{{ url_for('admin.ai_settings') }}"><span class="ico">✦</span>AI Settings</a>
+{% endblock %}
+{% block content %}
+<div class="app-topbar"><div><h1>Users</h1><div class="sub">All accounts registered on the platform.</div></div></div>
+<div class="panel">
+  <table>
+    <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Joined</th><th>Status</th></tr></thead>
+    <tbody>
+      {% for u in users %}
+      <tr>
+        <td style="color:var(--text-primary);">{{ u.name }}</td>
+        <td>{{ u.email }}</td>
+        <td><span class="badge-role badge-{{ u.role }}">{{ u.role }}</span></td>
+        <td>{{ u.joined }}</td>
+        <td><span class="pill pill-green">Active</span></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

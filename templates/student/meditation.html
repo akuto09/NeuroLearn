@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NeuroLearn Meditation</title>
+
+<style>
+
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:linear-gradient(135deg,#071A2F,#0B2848,#113C68);
+
+    font-family:Arial,sans-serif;
+    color:white;
+}
+
+.container{
+    text-align:center;
+}
+
+h1{
+    font-size:40px;
+}
+
+p{
+    opacity:.8;
+    margin-bottom:40px;
+}
+
+.circle{
+
+    width:220px;
+    height:220px;
+
+    border-radius:50%;
+
+    background:linear-gradient(145deg,#58d7ff,#00bfff);
+
+    margin:auto;
+
+    animation:breathe 8s infinite;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    box-shadow:0 0 40px rgba(0,191,255,.5);
+
+}
+
+@keyframes breathe{
+
+0%{
+transform:scale(.8);
+}
+
+50%{
+transform:scale(1.15);
+}
+
+100%{
+transform:scale(.8);
+}
+
+}
+
+button{
+
+margin-top:50px;
+
+padding:15px 35px;
+
+font-size:20px;
+
+border:none;
+
+border-radius:30px;
+
+background:#00c6ff;
+
+color:white;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+button:hover{
+
+transform:scale(1.05);
+
+background:#00a6dd;
+
+}
+
+#timer{
+
+font-size:32px;
+
+margin-top:30px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🧘 NeuroLearn Meditation</h1>
+
+
+
+<p id="recommendation">
+
+<h3>🧠 AI Recommendation</h3>
+
+<p>{{ recommendation }}</p>
+
+<p>{{ session }}</p><br><br>
+
+
+</p>
+
+<div class="circle" id="circle">
+
+Breathe
+
+</div>
+
+<div id="timer">
+
+03:00
+
+</div>
+
+<button onclick="startMeditation()">
+
+Start Meditation
+
+</button>
+
+</div>
+
+<script>
+
+let seconds = 180;
+let started = false;
+
+const circle = document.getElementById("circle");
+const timer = document.getElementById("timer");
+
+function startMeditation(){
+
+    if(started) return;
+
+    started = true;
+
+    const button = document.querySelector("button");
+
+    button.innerHTML = "Meditation Running...";
+    button.disabled = true;
+
+    breathingCycle();
+
+    const countdown = setInterval(function(){
+
+        seconds--;
+
+        let m = Math.floor(seconds/60);
+        let s = seconds%60;
+
+        timer.innerHTML =
+        String(m).padStart(2,'0') +
+        ":" +
+        String(s).padStart(2,'0');
+
+        if(seconds<=0){
+
+            clearInterval(countdown);
+
+            circle.innerHTML="✅";
+
+            timer.innerHTML="Meditation Complete";
+
+            document.querySelector("p").innerHTML =
+            "Excellent! Your mind is now refreshed.";
+
+            button.innerHTML="Continue Learning";
+
+            button.disabled=false;
+
+            button.onclick=function(){
+
+                window.location.href="/student/ai-assistant";
+
+            }
+
+        }
+
+    },1000);
+
+}
+
+function breathingCycle(){
+
+    circle.innerHTML="🌬 Inhale";
+
+    setTimeout(function(){
+
+        circle.innerHTML="⏸ Hold";
+
+    },4000);
+
+    setTimeout(function(){
+
+        circle.innerHTML="🌬 Exhale";
+
+    },6000);
+
+    setInterval(function(){
+
+        circle.innerHTML="🌬 Inhale";
+
+        setTimeout(function(){
+
+            circle.innerHTML="⏸ Hold";
+
+        },4000);
+
+        setTimeout(function(){
+
+            circle.innerHTML="🌬 Exhale";
+
+        },6000);
+
+    },10000);
+
+}
+
+</script>
+
+</body>
+</html>
