@@ -106,21 +106,21 @@ Instructions:
 """
 
     try:
-        response = client.models.generate_content(
-            model="gemini-3.5-flash",
-            contents=prompt
-        )
+     response = client.models.generate_content(
+        model="gemini-3.5-flash",
+        contents=prompt
+    )
 
-        chat_history.insert_one({
-    "user_message": message,
-    "ai_response": response.text,
-    "attention": attention,
-    "fatigue": fatigue,
-    "cognitive_load": load,
-})
-        return response.text
+    chat_history.insert_one({
+        "user_message": message,
+        "ai_response": response.text,
+        "attention": attention,
+        "fatigue": fatigue,
+        "cognitive_load": load,
+    })
 
-   except Exception as e:
+    return response.text
+    except Exception as e:
     import traceback
     traceback.print_exc()
-    return f"ERROR: {str(e)}"
+    return f"ERR`OR: {str(e)}"
