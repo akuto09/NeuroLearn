@@ -120,6 +120,7 @@ Instructions:
 })
         return response.text
 
-    except Exception as e:
-        print("Gemini Error:", e)
-        return "Sorry, I couldn't contact the AI service. Please try again."
+   except Exception as e:
+    import traceback
+    traceback.print_exc()
+    return f"ERROR: {str(e)}"
